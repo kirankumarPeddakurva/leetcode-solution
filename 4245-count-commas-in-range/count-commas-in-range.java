@@ -7,13 +7,7 @@ class Solution {
      {
         return 0;
      }
-     else
-     {
-        int t=n;
-        ans+=(t/1000-1)*1000;
-        ans+=t%1000;
-
-     }
+        ans+=(n/1000-1)*1000+(n%1000);
      return ans+1;
     }
 }
