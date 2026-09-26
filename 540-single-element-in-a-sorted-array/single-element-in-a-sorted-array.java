@@ -1,19 +1,53 @@
 class Solution {
-    public int singleNonDuplicate(int[]  nums)
+    public int singleNonDuplicate(int[] a)
      {
-      int l = 0;
-        int h = nums.length - 1;
-        while (l < h) {
-            int m = l + (h - l) / 2;
-            if (m % 2 == 1) {
-                m--;
-            }
-            if (nums[m] == nums[m + 1]) {
-                l = m + 2;
-            } else {
-                h = m;
-            }
+        int n=a.length;
+        if(n==1)
+        {
+            return a[0];
         }
-        return nums[l]; 
+        
+        int l=1;
+        int r=n-2;
+        if(a[l]!=a[0])
+        {
+            return a[0]; 
+        }
+        if(a[r]!=a[n-1])
+        {
+            return a[n-1];
+        }
+        while(l<=r)
+        {
+            int m=(l+r)/2;
+            if(a[m]!=a[m-1] && a[m]!=a[m+1])
+            {
+                return a[m];
+            }
+            if(m%2==0)
+            {
+                if(a[m]==a[m-1])
+                {
+                    r=m-1;
+                }
+                else
+                {
+                    l=m+1;
+                }
+            }
+            else
+            {
+                if(a[m]==a[m-1])
+                {
+                    l=m+1;
+                }
+                else
+                {
+                    r=m-1;
+                }
+            }
+
+        }
+        return -1; 
     }
 }
