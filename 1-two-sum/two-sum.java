@@ -1,16 +1,17 @@
 class Solution {
     public int[] twoSum(int[] a, int t) {
-        int n = a.length;
-        for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<n;j++)
-            {
-                if(a[i]+a[j]==t && i!=j)
-                {
-                    return new int[]{i,j};
-                }
+        HashMap<Integer, Integer> hm = new HashMap<>();
+
+        for(int i = 0; i < a.length; i++) {
+            int rem = t - a[i];
+
+            if(hm.containsKey(rem)) {
+                return new int[]{hm.get(rem), i};
             }
+
+            hm.put(a[i], i);
         }
+
         return new int[]{};
     }
 }
