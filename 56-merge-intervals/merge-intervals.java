@@ -22,11 +22,12 @@ class Solution {
         int ck[] = p.poll();
         int prevfirst = ck[0];
         int prevsecond = ck[1];
-
+        int curfirst=0;
+        int cursecond=0;
         while(p.size() > 0) {
             int c[] = p.poll();
-            int curfirst = c[0];
-            int cursecond = c[1];
+             curfirst = c[0];
+             cursecond = c[1];
 
             if(prevsecond >= curfirst) {
                 prevfirst = Math.min(curfirst, prevfirst);
@@ -43,11 +44,20 @@ class Solution {
             }
         }
 
-        List<Integer> all = new ArrayList<>();
-        all.add(prevfirst);
-        all.add(prevsecond);
-        res.add(all);
-
+       if(prevsecond >= curfirst) {
+                prevfirst = Math.min(curfirst, prevfirst);
+                prevsecond = Math.max(prevsecond, cursecond);
+                List<Integer> all = new ArrayList<>();
+                all.add(prevfirst);
+                all.add(prevsecond);
+                res.add(all);
+            }
+            else {
+                List<Integer> all = new ArrayList<>();
+                all.add(prevfirst);
+                all.add(prevsecond);
+                res.add(all);
+            }
         int size = res.size();
         int ans[][] = new int[size][2];
 
